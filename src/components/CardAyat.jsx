@@ -24,7 +24,7 @@ export const CardAyat = (props) => {
                                 <div className="flex w-[25px] h-fit mr-1">
                                     <img src={info} alt="" className='object-contain' />
                                 </div>
-                                <ModalTafsir namaLatin={`${findTafsirData.ayat} Surat ${dataTafsir.namaLatin}`} deskripsi={findTafsirData.teks} title={`Tafsir Ayat `} id={`ayat-${nomorAyat}`} />
+                                <ModalTafsir namaLatin={`${findTafsirData.ayat} Surat ${dataTafsir?.namaLatin}`} deskripsi={findTafsirData.teks} title={`Tafsir Ayat `} id={`ayat-${nomorAyat}`} />
                             </div>
                         </div>
                     </div>
