@@ -114,7 +114,7 @@ export const DetailSurat = () => {
                             <div className="w-[25px] h-[25px]">
                                 {isPlaying ? <img src={pause} alt="" className='object-contain' /> : <img src={play} alt="" className='object-contain' />}
                             </div>
-                            <p onClick={handlePlayAudio}>{isPlaying ? "Jeda Audio" : "Putar Audio"}</p>
+                            <p className="text-xs" onClick={handlePlayAudio}>{isPlaying ? "Jeda Audio" : "Putar Audio"}</p>
                         </div>
                         <p className='text-xs text-nowrap my-auto ml-7 lg:ml-1'>
                             {formatTime(currentTime)} / {formatTime(duration)}
