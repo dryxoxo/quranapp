@@ -6,7 +6,7 @@ export const ModalTafsir = (props) => {
     return (
         <>
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <p onClick={() => document.getElementById(`${id}`).showModal()}>{title}</p>
+            <p onClick={() => document.getElementById(`${id}`).showModal()} className='text-xs my-auto'>{title}</p>
             <dialog id={id} className="modal modal-bottom sm:modal-middle w-full">
                 <div className="modal-box">
                     <form method="dialog">
