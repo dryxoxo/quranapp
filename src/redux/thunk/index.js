@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllSurat, getSurat } from "../../api/quran";
+import { getAllSurat, getSurat, getTafsir } from "../../api/quran";
 
 export const fetchAllSurat = createAsyncThunk(
     'suratSlice/fetchAllSurat', async () => {
@@ -15,3 +15,9 @@ export const fetchDetailSurat = createAsyncThunk(
     }
 )
 
+export const fetchDetailTafsir = createAsyncThunk(
+    'tafsir/fetchDetailTafsir', async (nomor) => {
+        const data = await getTafsir(nomor)
+        return data
+    }
+)

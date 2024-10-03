@@ -18,3 +18,13 @@ export const getSurat = async (nomor) => {
         throw new Response("Failed to fetch surat", { status: 500 });
     }
 };
+
+export const getTafsir = async (nomor) => {
+    try {
+        const { data } = await axios.get(`/tafsir/${nomor}`)
+        return data
+    } catch (error) {
+        console.error(error)
+        throw new Error("failed to fetch tafsir", { status: 500 });
+    }
+}

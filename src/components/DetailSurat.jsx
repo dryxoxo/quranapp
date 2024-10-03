@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllSurat, fetchDetailSurat } from '../redux/thunk'
+import { fetchDetailTafsir, fetchDetailSurat, fetchAllSurat } from '../redux/thunk'
 import { Spinner } from './Spinner'
 import info from './../assets/info.svg'
 import play from './../assets/play.svg'
 import pause from './../assets/pause.svg'
 import { ModalTafsir } from './ModalTafsir'
 import { CardAyat } from './CardAyat'
+import { findTafsir } from '../redux/slice/tafsir'
 
 export const DetailSurat = () => {
 
@@ -18,6 +19,17 @@ export const DetailSurat = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    
+    const { findTafsirData, dataTafsir } = useSelector(state => state.tafsirSurat)
+
+    const handleTafsirAyat = (nomor) => {
+        dispatch(findTafsir({nomor}))
+
+    }
+
+    useEffect(() => {
+
+    }, [findTafsirData]);
 
     const handlePlayAudio = () => {
         if (isPlaying) {
@@ -63,13 +75,12 @@ export const DetailSurat = () => {
     useEffect(() => {
         dispatch(fetchAllSurat())
         dispatch(fetchDetailSurat(nomor))
+        dispatch(fetchDetailTafsir(nomor))
     }, [dispatch, nomor])
 
     // Render spinner saat loading
     if (loading) {
-        console.log("detail loading", loading)
-        console.log(data)
-        // <Spinner />
+
         return <p>test</p>
     }
 
@@ -96,13 +107,12 @@ export const DetailSurat = () => {
                         <div className="w-[25px] h-[25px]">
                             <img src={info} alt="" className='object-contain' />
                         </div>
-                        <ModalTafsir namaLatin={data.namaLatin} deskripsi={data.deskripsi} />
+                        <ModalTafsir namaLatin={data.namaLatin} deskripsi={data.deskripsi} title="Tentang Surat " id={`ayat-${data.nomor}`}/>
                     </div>
                     <div className="flex lg:flex-row flex-col gap-1 hover:text-white cursor-pointer">
                         <div className="flex w-full h-fit justify-center">
                             <div className="w-[25px] h-[25px]">
                                 {isPlaying ? <img src={pause} alt="" className='object-contain' /> : <img src={play} alt="" className='object-contain' />}
-
                             </div>
                             <p onClick={handlePlayAudio}>{isPlaying ? "Jeda Audio" : "Putar Audio"}</p>
                         </div>
@@ -121,7 +131,7 @@ export const DetailSurat = () => {
                 </div>
             </div>
             {data.ayat.map((item, index) => (
-                <CardAyat key={index} nomorAyat={item.nomorAyat} teksArab={item.teksArab} teksLatin={item.teksLatin} teksIndonesia={item.teksIndonesia} />
+                <CardAyat key={index} nomorAyat={item.nomorAyat} teksArab={item.teksArab} teksLatin={item.teksLatin} teksIndonesia={item.teksIndonesia} handleTafsirAyat={handleTafsirAyat} />
             ))}
         </div>
     )

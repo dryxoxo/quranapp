@@ -80,7 +80,7 @@ export const NavDetail = () => {
                     <div className="h-[20px] w-[20px] me-1">
                         <img src={setting} alt="" className='h-full w-full object-cover' />
                     </div>
-                    <p className='font-semibold text-sm hidden lg:block'>Pengaturan</p>
+                    <p className='font-semibold text-sm hidden lg:block'>Bookmark</p>
                 </div>
             </div>
         </div>

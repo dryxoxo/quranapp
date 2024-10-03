@@ -16,7 +16,6 @@ export const DaftarSurat = () => {
 
     const handleClickSurat = (nomor) => {
         navigate(`/detailSurat/${nomor}`)
-        console.log('terklik', nomor)
     }
 
     const handleSearch = (event) => {
