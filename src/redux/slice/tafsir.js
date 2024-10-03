@@ -14,11 +14,9 @@ const tafsirSlice = createSlice({
     reducers: {
         findTafsir: (state, action) => {
             const { nomor } = action.payload;
-            console.log("payload find", nomor);
             // Cek apakah dataTafsir sudah ada dan cari ayat
             const result = state.dataTafsir.tafsir.find(item => item.ayat === nomor);
             state.findTafsirData = result || {}; // Atur result atau objek kosong jika tidak ditemukan
-            console.log("dari result", result);
         }
     },
     extraReducers: (builder) => {
